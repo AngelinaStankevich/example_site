@@ -33,6 +33,7 @@ ALLOWED_HOSTS = []
 INSTALLED_APPS = [
     'polls.apps.PollsConfig',
     'django_registration',
+    'django_seed',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -131,3 +132,14 @@ STATICFILES_DIRS = [
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
+# AUTHENTICATION_BACKENDS = [
+#     'django.contrib.auth.backends.ModelBackend',
+# ]
+
+
+LOGIN_REDIRECT_URL = '/polls/'
+
+
+ACCOUNT_ACTIVATION_DAYS = 10  # Или другое желаемое количество дней
