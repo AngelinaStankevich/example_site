@@ -10,6 +10,7 @@ python = "^3.10"
 django = "^4.2.3"
 ipython = "^8.14.0"
 psycopg2-binary = "^2.9.7"
+django-registration = "^3.4"
 
 
 [build-system]

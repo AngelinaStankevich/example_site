@@ -9,7 +9,7 @@ https://docs.djangoproject.com/en/4.2/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.2/ref/settings/
 """
-import os
+# import os
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -32,6 +32,7 @@ ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
     'polls.apps.PollsConfig',
+    'django_registration',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -77,11 +78,11 @@ WSGI_APPLICATION = 'examplesite.wsgi.application'
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.postgresql_psycopg2",
-        "NAME": os.getenv("POSTGRES_NAME", "polls"),
-        "USER": os.getenv("POSTGRES_USER", "polls"),
-        "PASSWORD": os.getenv("POSTGRES_PASSWORD", "my_password"),
-        "HOST": os.getenv ("POSTGRES_HOST", "localhost"),
-        "PORT": os.getenv("POSTGRES_PORT", "5432"),
+        "NAME": "polls",
+        "USER":  "polls",
+        "PASSWORD": "my_password",
+        "HOST": "localhost",
+        "PORT": "5433",
     }
 }
 
