@@ -11,7 +11,15 @@ django = "^4.2.3"
 ipython = "^8.14.0"
 psycopg2-binary = "^2.9.7"
 django-registration = "^3.4"
+seed = "^0.11.3"
+django-seed = "^0.3.1"
 
+
+[tool.poetry.group.dev.dependencies]
+black = "^23.7.0"
+isort = "^5.12.0"
+flake8 = "^6.1.0"
+pre-commit = "^3.3.3"
 
 [build-system]
 requires = ["poetry-core"]

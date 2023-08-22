@@ -22,3 +22,12 @@ class Choice(models.Model):
 
     def __str__(self):
         return self.choice_text
+
+
+def notify_users(sender: type[Question], instance: Question, created: bool, **kwargs):
+    if created:
+        # TODO : really notify all users
+        print(f'Notify all users about new questions {instance.question_text!r}')
+
+
+signal = models.signals.post_save.connect(receiver=notify_users, sender=Question)
