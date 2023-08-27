@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block title %} Posts index {% endblock %}
+
+{% block content %}
+    <a href="{% url 'blog:create_post' %} "> Create new post </a>
+    {% if posts %}
+        <ul>
+        {% for post in posts %}
+            <li><a href="{% url 'blog:detail' post.id %}">{{ post.title }}</a></li>
+        {% endfor %}
+        </ul>
+    {% else %}
+        <p>No posts are available.</p>
+    {% endif %}
+
+    {% load static %}
+<img src="{% static 'polls/planet.jpg' %}" alt="Hi!">
+
+{% endblock %}

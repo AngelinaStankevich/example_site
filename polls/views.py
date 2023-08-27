@@ -1,10 +1,9 @@
-
 from django.http import HttpResponseRedirect
 from django.shortcuts import render, get_object_or_404
-from .models import Question, Choice
 from django.urls import reverse
 from django.views import generic, View
-from django.utils import timezone
+
+from .models import Question, Choice
 
 
 class IndexView(generic.ListView):
@@ -50,10 +49,24 @@ class VoteView(View):
             return HttpResponseRedirect(reverse("polls:results", args=(question.id,)))
 
 
-def create_question(request):
-    question_text = ''
-    question = Question(question_text=question_text, pub_date=timezone.now())
-    question.save()
-    return HttpResponseRedirect(reverse("polls:detail", args=(question.id,)))
+# def create_question(request):
+#       !!!!!! imperative
+#     if request.method == "POST":
+#         formset = QuestionForm(request.POST, request.FILES)
+#         if formset.is_valid():
+#             formset.save()
+#             question = formset.instance
+#             return HttpResponseRedirect(reverse("polls:detail", args=(question.id,)))
+#         else:
+#             raise ValueError(f"TODO: some logic if form is invalid")
+#     elif request.method == "GET":
+#         question_form = QuestionForm()
+#         return render(request, "polls/post_form.html", {"form": question_form})
+#     else:
+#         raise ValueError(f"Method {request.method} is not supported ")
+#
 
 
+class QuestionCreateView(generic.CreateView):
+    model = Question
+    fields = ['pub_date', 'question_text']

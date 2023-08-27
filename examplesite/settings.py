@@ -30,10 +30,16 @@ ALLOWED_HOSTS = []
 
 # Application definition
 
-INSTALLED_APPS = [
+MY_APPS = [
     'polls.apps.PollsConfig',
+    'blog.apps.BlogConfig'
+
+]
+THIRD_PARTY_APPS = [
     'django_registration',
     'django_seed',
+]
+BUILT_IN_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -42,6 +48,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 ]
 
+INSTALLED_APPS = MY_APPS + THIRD_PARTY_APPS + BUILT_IN_APPS
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
