@@ -1,11 +1,15 @@
 from django.db import models
 from django.utils import timezone
+from django.urls import reverse
 import datetime
 
 
 class Question(models.Model):
     question_text: str = models.CharField(max_length=200)
     pub_date = models.DateTimeField("date published")
+
+    def get_absolute_url(self) -> str:
+        return reverse('polls:detail', kwargs={'pk': self.pk})
 
     def was_published_recently(self):
         now = timezone.now()
