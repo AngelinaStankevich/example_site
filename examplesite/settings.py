@@ -32,12 +32,14 @@ ALLOWED_HOSTS = []
 
 MY_APPS = [
     'polls.apps.PollsConfig',
-    'blog.apps.BlogConfig'
+    'blog.apps.BlogConfig',
+    'overrides.apps.OverridesConfig',
 
 ]
 THIRD_PARTY_APPS = [
     'django_registration',
     'django_seed',
+    'ckeditor',
 ]
 BUILT_IN_APPS = [
     'django.contrib.admin',

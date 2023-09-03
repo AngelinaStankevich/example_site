@@ -18,6 +18,10 @@ class Question(models.Model):
     def __str__(self):
         return self.question_text
 
+    @property
+    def info(self) -> str:
+        return "some info"
+
 
 class Choice(models.Model):
     question = models.ForeignKey(Question, on_delete=models.CASCADE)
