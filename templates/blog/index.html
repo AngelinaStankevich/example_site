@@ -1,8 +1,10 @@
 {% extends 'base.html' %}
+{% load static %}
 
 {% block title %} Posts Index {% endblock %}
 
 {% block content %}
+    <link rel="stylesheet" type="text/css" href="{% static 'blog/styles.css' %}">
 <div class="container">
     <div class="row">
         <div class="col-md-8">

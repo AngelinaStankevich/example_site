@@ -1,0 +1,10 @@
+/* static/blog/styles.css */
+
+h1 {
+    color: white;
+}
+body {
+    background-image: url('/static/blog/neon.jpg');
+    background-size: cover; /* Растянуть изображение на всю страницу */
+    background-repeat: no-repeat; /* Запретить повторение фонового изображения */
+}
