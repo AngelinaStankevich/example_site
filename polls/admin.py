@@ -10,7 +10,7 @@ class ChoiceInline(admin.TabularInline):
 class QuestionAdmin(admin.ModelAdmin):
     fieldset = ["pub_date", "question_text"]
     inlines = [ChoiceInline]
-    readonly_fields = ["test_fields"]
+    # readonly_fields = ["test_fields"]
 
     # description functions like a model field's verbose_name
     @admin.display(description="My readonly field")

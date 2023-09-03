@@ -1,8 +1,27 @@
 from django.views import generic
 from django.utils import timezone
+from django.forms import ModelForm
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django import shortcuts
 
-from .models import Post
+from .models import Post, Vote
+
+
+def _vote(request, pk: int, up: bool):
+    post = shortcuts.get_object_or_404(Post, pk=pk)
+    Vote.objects.update_or_create(post=post, voter=request.user, defaults={'up': up})
+    return shortcuts.redirect('blog:detail', pk=pk)
+
+
+def upvote(request, pk: int):
+    return _vote(request=request, pk=pk, up=True)
+
+
+def downvote(request, pk: int):
+    return _vote(request=request, pk=pk, up=False)
+
+
+# IndexView - list of posts
 
 
 class IndexView(generic.ListView):
