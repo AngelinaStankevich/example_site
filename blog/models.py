@@ -15,3 +15,25 @@ class Post(models.Model):
 
     def __str__(self):
         return f"Post(title ={self.title}, id={self.id}, author_id={self.author_id})"
+
+    @property
+    def rating(self) -> int:
+        return self.upvotes - self.downvotes
+
+    @property
+    def upvotes(self) -> int:
+        return len(self.vote_set.filter(up=True))
+
+    @property
+    def downvotes(self) -> int:
+        return len(self.vote_set.filter(up=False))
+
+
+
+class Vote(models.Model):
+    post = models.ForeignKey(to=Post, on_delete=models.CASCADE)
+    voter = models.ForeignKey(to=User, on_delete=models.CASCADE)
+    up = models.BooleanField(null=False)
+
+    class Meta:
+        unique_together = ('post', 'voter')

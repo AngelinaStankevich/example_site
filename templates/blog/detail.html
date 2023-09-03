@@ -3,6 +3,16 @@
 {% block title %} Post {{ post.id }} {% endblock %}
 
 {% block content %}
-<h1> {{ post.title }}</h1>
-<p> {{ post.body }}</p>
+    <h1> {{ post.title }}</h1>
+    {{ post.body|safe}}
+
+    <form action="{% url 'blog:upvote' post.pk %}" method="post">
+        {% csrf_token %}
+        <button type="submit"> 👍🏻 {{ post.upvotes }}</button>
+    </form>
+
+    <form action="{% url 'blog:downvote' post.pk %}" method="post">
+        {% csrf_token %}
+        <button type="submit"> 👎🏾 {{ post.downvotes }}</button>
+    </form>
 {% endblock %}
