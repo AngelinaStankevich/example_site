@@ -1,5 +1,7 @@
 from django.views import generic
 from django.utils import timezone
+from django.contrib.auth.mixins import LoginRequiredMixin
+
 from .models import Post
 
 
@@ -16,8 +18,10 @@ class DetailView(generic.DetailView):
     template_name = "blog/detail.html"
 
 
-class PostCreateView(generic.CreateView):
+class PostCreateView(LoginRequiredMixin, generic.CreateView):
     model = Post
-    fields = ['title', 'body']
+    fields = ["title", "body"]
 
-
+    def form_valid(self, form):
+        form.instance.author = self.request.user
+        return super().form_valid(form)
