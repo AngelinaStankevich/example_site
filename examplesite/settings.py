@@ -40,6 +40,7 @@ THIRD_PARTY_APPS = [
     'django_registration',
     'django_seed',
     'ckeditor',
+    'rest_framework',
 ]
 BUILT_IN_APPS = [
     'django.contrib.admin',
@@ -152,5 +153,11 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 LOGIN_REDIRECT_URL = '/'
 
 
-
+REST_FRAMEWORK = {
+    # Use Django's standard `django.contrib.auth` permissions,
+    # or allow read-only access for unauthenticated users.
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly'
+    ]
+}
 
