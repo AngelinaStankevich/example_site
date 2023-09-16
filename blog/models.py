@@ -29,7 +29,6 @@ class Post(models.Model):
         return len(self.vote_set.filter(up=False))
 
 
-
 class Vote(models.Model):
     post = models.ForeignKey(to=Post, on_delete=models.CASCADE)
     voter = models.ForeignKey(to=User, on_delete=models.CASCADE)
@@ -37,3 +36,16 @@ class Vote(models.Model):
 
     class Meta:
         unique_together = ('post', 'voter')
+
+
+class Tag(models.Model):
+    title = models.CharField(max_length=50, unique=True)
+
+    def save(
+        self, force_insert=False, force_update=False, using=None, update_fields=None
+    ) -> None:
+        self.title = self.title.lower()
+        super().save(force_insert=force_insert, force_update=force_update, using=using, update_fields=update_fields)
+
+    def get_absolute_url(self) -> str:
+        return reverse('blog:tag_detail', kwargs={'pk': self.pk})

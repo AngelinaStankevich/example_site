@@ -3,8 +3,9 @@ from django.utils import timezone
 from django.forms import ModelForm
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django import shortcuts
+from django.db import models
 
-from .models import Post, Vote
+from .models import Post, Vote, Tag
 
 
 def _vote(request, pk: int, up: bool):
@@ -44,3 +45,21 @@ class PostCreateView(LoginRequiredMixin, generic.CreateView):
     def form_valid(self, form):
         form.instance.author = self.request.user
         return super().form_valid(form)
+
+
+class TagListView(generic.ListView):
+    template_name = "blog/tag_list.html"
+    context_object_name = "tags"
+
+    def get_queryset(self) -> models.QuerySet:
+        return Tag.objects.order_by('title').all()
+
+
+class TagDetailView(generic.DetailView):
+    model = Tag
+    template_name = "blog/tag_detail.html"
+
+
+class TagCreateView(LoginRequiredMixin, generic.CreateView):
+    model = Tag
+    fields = ['title']
