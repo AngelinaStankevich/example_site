@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+    <a href="{% url 'blog:create_tag' %}" class="btn btn-primary mb-3">Create new tag</a>
+
+            {% if tags %}
+                <ul class="list-group">
+                {% for tag in tags %}
+                    <li class="list-group-item">
+{#                        <h3><a href="{% url 'blog:tag_detail' tag.id %}">{{ tag.title }}</a></h3>#}
+                        <h3><a href="#">{{ tag.title }}</a></h3>
+                    </li>
+                {% endfor %}
+                </ul>
+            {% else %}
+                <p class="mt-3">No tags are available.</p>
+            {% endif %}
+
+{% endblock %}
