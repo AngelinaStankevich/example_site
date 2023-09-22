@@ -34,6 +34,3 @@ class TagViewSet(viewsets.ModelViewSet):
     serializer_class = serializers.TagSerializer
     pagination_class = LimitOffsetPagination
 
-
-
-
