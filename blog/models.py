@@ -4,11 +4,31 @@ from django.urls import reverse
 from ckeditor.fields import RichTextField
 
 
+class Tag(models.Model):
+    title = models.CharField(max_length=50, unique=True)
+
+    def __str__(self) -> str:
+        return self.title
+
+    def save(
+        self, force_insert=False, force_update=False, using=None, update_fields=None
+    ) -> None:
+        self.title = self.title.lower()
+        super().save(force_insert=force_insert, force_update=force_update, using=using, update_fields=update_fields)
+
+    def get_absolute_url(self) -> str:
+        return reverse('blog:tag_detail', kwargs={'pk': self.pk})
+
+
 class Post(models.Model):
     title = models.CharField(max_length=255)
     body = RichTextField()
     author = models.ForeignKey(to=User, on_delete=models.CASCADE)
+    tags = models.ManyToManyField(to=Tag, related_name='posts')
     pub_date = models.DateTimeField(auto_now_add=True)
+
+    # class Meta:
+    #     ordering = ['title', 'author']
 
     def get_absolute_url(self) -> str:
         return reverse('blog:detail', kwargs={'pk': self.pk})
@@ -37,15 +57,3 @@ class Vote(models.Model):
     class Meta:
         unique_together = ('post', 'voter')
 
-
-class Tag(models.Model):
-    title = models.CharField(max_length=50, unique=True)
-
-    def save(
-        self, force_insert=False, force_update=False, using=None, update_fields=None
-    ) -> None:
-        self.title = self.title.lower()
-        super().save(force_insert=force_insert, force_update=force_update, using=using, update_fields=update_fields)
-
-    def get_absolute_url(self) -> str:
-        return reverse('blog:tag_detail', kwargs={'pk': self.pk})
