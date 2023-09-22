@@ -40,7 +40,7 @@ class DetailView(generic.DetailView):
 
 class PostCreateView(LoginRequiredMixin, generic.CreateView):
     model = Post
-    fields = ["title", "body"]
+    fields = ["title", "body", "tags"]
 
     def form_valid(self, form):
         form.instance.author = self.request.user

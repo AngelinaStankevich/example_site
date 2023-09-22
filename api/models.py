@@ -1,5 +1,4 @@
 from django.contrib.auth.models import User
-from polls.models import Question
-from blog.models import Post
+from blog.models import Post, Tag, Vote
 
-__all__ = ['User', 'Post', 'Question']
+__all__ = ['User', 'Post', 'Tag', 'Vote']
