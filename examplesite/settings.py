@@ -41,6 +41,9 @@ THIRD_PARTY_APPS = [
     'django_seed',
     'ckeditor',
     'rest_framework',
+    'drf_yasg',
+    'djoser',
+    'rest_framework.authtoken',
 ]
 BUILT_IN_APPS = [
     'django.contrib.admin',
@@ -162,5 +165,15 @@ REST_FRAMEWORK = {
         'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly'
     ],
     'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.LimitOffsetPagination',
-    'PAGE_SIZE': 5
+    'PAGE_SIZE': 5,
+
+    'DEFAULT_AUTHENTICATION_CLASS': [
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
+        'rest_framework.authentication.SessionAuthentication',
+
+    ]
+}
+
+SIMPLE_JWT = {
+   'AUTH_HEADER_TYPES': ('JWT',),
 }
