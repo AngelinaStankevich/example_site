@@ -1,4 +1,4 @@
-from rest_framework import viewsets, filters, pagination
+from rest_framework import viewsets, filters, pagination, permissions
 from django.conf import settings
 
 from . import serializers, models
@@ -7,6 +7,7 @@ from . import serializers, models
 class UserViewSet(viewsets.ModelViewSet):
     queryset = models.User.objects.all()
     serializer_class = serializers.UserSerializer
+    permission_classes = [permissions.IsAdminUser | permissions.DjangoModelPermissionsOrAnonReadOnly]
 
 
 class LimitOffsetPagination(pagination.LimitOffsetPagination):
@@ -33,4 +34,3 @@ class TagViewSet(viewsets.ModelViewSet):
     queryset = models.Tag.objects.all()
     serializer_class = serializers.TagSerializer
     pagination_class = LimitOffsetPagination
-
