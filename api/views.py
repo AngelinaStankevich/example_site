@@ -34,4 +34,3 @@ class TagViewSet(viewsets.ModelViewSet):
     queryset = models.Tag.objects.all()
     serializer_class = serializers.TagSerializer
     pagination_class = LimitOffsetPagination
-
