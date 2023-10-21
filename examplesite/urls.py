@@ -21,7 +21,8 @@ urlpatterns = [
     path("", include("polls.urls")),
     path("posts/", include("blog.urls")),
     path('admin/', admin.site.urls),
-    path('accounts/', include('django_registration.backends.activation.urls')),
+    path('accounts/', include('django_registration.backends.one_step.urls')),
     path('accounts/', include('django.contrib.auth.urls')),
+    path('api-auth', include('rest_framework.urls')),
     path('api/v1/', include('api.urls')),
 ]
